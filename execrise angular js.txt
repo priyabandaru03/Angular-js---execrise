@@ -1,0 +1,244 @@
+B.Devi priya(51892759)
+ANGULAR JS EXECRISE
+Question 1
+app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+templateUrl : './app.component.html',
+styleUrls : ['./app.component.css']
+})
+export class AppComponent {
+  title = 'project';
+  favouriteMovie: string="THE LIE";
+}
+
+app.component.html
+<h2>Favorite Movie: {{favouriteMovie}}</h2>
+
+App.component.html
+<app-employeee></app-employeee>
+
+Question 2
+employeee.component.ts
+
+import { EmployeePractice } from '../EmployePractice';
+
+@Component({
+  selector: 'app-employeee',
+  templateUrl: './employeee.component.html',
+  styleUrls: ['./employeee.component.css']
+})
+export class EmployeeeComponent implements OnInit {
+  empl:EmployeePractice= {
+    id: 101,
+    name: 'priya bandaru',
+    salary: 40000,}
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
+
+employeee.component.html
+
+<div>
+    <h1>Employee Details</h1>
+    <div class="well hoverwell thumbnail">
+    <div>Id : {{empl.id }}</div>
+    <div>Name : {{empl.name}}</div>
+    <div>Salary : {{empl.salary|currency: "INR" }}</div>
+    </div>
+
+Question 3
+employeee.component.ts
+import { Component, OnInit } from '@angular/core';
+import { EmployeePractice } from '../EmployePractice';
+
+@Component({
+  selector: 'app-employeee',
+  templateUrl: './employeee.component.html',
+  styleUrls: ['./employeee.component.css']
+})
+export class EmployeeeComponent implements OnInit {
+  empl:EmployeePractice= {
+    id: 101,
+    name: 'priya bandaru',
+    salary: 40000,
+    permanent:'Yes'}
+    show:boolean=true;
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+}
+
+employee.component.html
+<div>
+    <h1>Employee Details</h1>
+    <div class="well hoverwell thumbnail">
+    <div>Id : {{empl.id }}</div>
+    <div>Name : {{empl.name}}</div>
+    <div>Salary : {{empl.salary|currency: "INR" }}</div>
+    <div *ngIf="show">Permanent : {{ empl.permanent }}</div>
+    </div>
+
+Employeee.component.html
+ <app-department></app-department>
+
+Question 4
+Department.ts
+
+export interface Department  {
+    deptId: number;
+    deptName: string;
+}
+
+department.component.ts
+import { Component, OnInit } from '@angular/core';
+import { Department } from '../Department';
+
+@Component({
+  selector: 'app-department',
+  templateUrl: './department.component.html',
+  styleUrls: ['./department.component.css']
+})
+export class DepartmentComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  dep:Department={
+    deptId:1,
+    deptName:"Payroll",
+   
+};
+perminant:boolean= true;
+
+currentDate = new Date();
+
+}
+
+department.component.html
+<div>Department Id : {{ dep.deptId }}</div>
+<div>Department Name : {{ dep.deptName }}</div>
+
+Question 5
+Department.ts
+import {skill} from './Skill';
+
+export interface Department  {
+    deptId: number;
+    deptName: string;
+    skills: skill [];
+}
+department.component.ts
+import { Component, OnInit } from '@angular/core';
+import { Department } from '../Department';
+
+@Component({
+  selector: 'app-department',
+  templateUrl: './department.component.html',
+  styleUrls: ['./department.component.css']
+})
+export class DepartmentComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  dep:Department={
+    deptId:1,
+    deptName:"Payroll",
+    skills: [{skill_id:101, skill_name:"HTML"},
+    {skill_id:102,skill_name:"CSS"},
+    {skill_id:103,skill_name:"JAVA SCRIPT"}]
+   };
+}
+
+department.component.html
+<div>Department Id : {{ dep.deptId }}</div>
+<div>Department Name : {{ dep.deptName }}</div>
+<b>Skills</b>
+
+<table>
+    <tr>
+      <th>Skill Id</th>
+      <th>Skill Name</th>
+    </tr>
+    <tr *ngFor="let depart of dep.skills">
+      <td>{{depart.skill_id}}</td>
+      <td>{{depart.skill_name}}</td>
+      
+  </tr>
+  </table>
+
+Question 6
+Department.component.ts
+import { Component, OnInit } from '@angular/core';
+import { Department } from '../Department';
+
+@Component({
+  selector: 'app-department',
+  templateUrl: './department.component.html',
+  styleUrls: ['./department.component.css']
+})
+export class DepartmentComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  dep:Department={
+    deptId:1,
+    deptName:"Payroll",
+    skills: [{skill_id:101, skill_name:"HTML"},
+    {skill_id:102,skill_name:"CSS"},
+    {skill_id:103,skill_name:"JAVA SCRIPT"}]
+   };
+currentDate = new Date();
+}
+Department.component.html
+<div>Department Id : {{ dep.deptId }}</div>
+<div>Department Name : {{ dep.deptName }}</div>
+<b>Skills</b>
+
+<table>
+    <tr>
+      <th>Skill Id</th>
+      <th>Skill Name</th>
+    </tr>
+    <tr *ngFor="let depart of dep.skills">
+      <td>{{depart.skill_id}}</td>
+      <td>{{depart.skill_name}}</td>
+      
+  </tr>
+  </table>
+  <b>Date Of Birth </b>: {{currentDate | date:'yyyy-MM-dd' | date:'full'}}<br/>
+
+Question 7
+Department.component.html
+<div>Department Id : {{ dep.deptId }}</div>
+<div>Department Name : {{ dep.deptName }}</div>
+<b>Skills</b>
+
+<table>
+    <tr>
+      <th>Skill Id</th>
+      <th>Skill Name</th>
+    </tr>
+    <tr *ngFor="let depart of dep.skills">
+      <td>{{depart.skill_id}}</td>
+      <td>{{depart.skill_name}}</td>
+      
+  </tr>
+  </table>
+  <b>Date Of Birth </b>: {{currentDate | date:'yyyy-MM-dd' | date:'full'}}<br/>
+  <b> Date Of Birth </b>:{{currentDate | date:'longDate' }}<br/>
+
+
